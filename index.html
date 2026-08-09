@@ -1,0 +1,2853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>para você.</title>
+
+<style>
+
+/* ==================================================
+   CONFIGURAÇÕES
+================================================== */
+
+:root {
+
+  --blue: #283b54;
+  --blue-dark: #1d2c40;
+  --blue-light: #344b68;
+
+  --black: #101010;
+  --black-soft: #191919;
+
+  --paper: #f7f4ec;
+  --paper-dark: #ebe6d9;
+
+  --ink: #252525;
+
+  --white: #ffffff;
+
+}
+
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+html,
+body {
+
+  width: 100%;
+  height: 100%;
+
+}
+
+
+body {
+
+  overflow: hidden;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    var(--blue);
+
+  color:
+    white;
+
+}
+
+
+/* ==================================================
+   ÁREA PRINCIPAL
+================================================== */
+
+#app {
+
+  width: 100vw;
+  height: 100vh;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+/* ==================================================
+   MESA
+================================================== */
+
+.desk {
+
+  position: absolute;
+
+  left: 5vw;
+  right: 5vw;
+
+  top: 8vh;
+  bottom: 8vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #111111,
+      #080808
+    );
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 40px 80px rgba(0,0,0,.35),
+    inset 0 0 0 1px
+    rgba(255,255,255,.05);
+
+  overflow: hidden;
+
+}
+
+
+/* textura discreta */
+
+.desk::after {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(255,255,255,.025),
+      transparent 25%
+    );
+
+  pointer-events: none;
+
+}
+
+
+/* ==================================================
+   MAPA
+================================================== */
+
+.map-object {
+
+  position: absolute;
+
+  left: 8%;
+  top: 18%;
+
+  width: 180px;
+  height: 220px;
+
+  opacity: .9;
+
+  transform:
+    rotate(-4deg);
+
+}
+
+
+.map-shape {
+
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+
+}
+
+
+/*
+   Representação estilizada do Brasil.
+*/
+
+.brazil {
+
+  position: absolute;
+
+  left: 20px;
+  top: 10px;
+
+  width: 125px;
+  height: 180px;
+
+  background:
+    #d7d0bd;
+
+  clip-path:
+    polygon(
+      35% 0%,
+      62% 7%,
+      77% 18%,
+      93% 26%,
+      85% 42%,
+      96% 55%,
+      80% 66%,
+      83% 82%,
+      64% 94%,
+      46% 82%,
+      32% 88%,
+      20% 72%,
+      6% 64%,
+      13% 48%,
+      4% 35%,
+      19% 25%,
+      18% 10%
+    );
+
+  filter:
+    drop-shadow(
+      0 5px 5px
+      rgba(0,0,0,.4)
+    );
+
+}
+
+
+.pin {
+
+  position: absolute;
+
+  width: 14px;
+  height: 14px;
+
+  background:
+    #b33d3d;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(179,61,61,.15);
+
+}
+
+
+.pin::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 2px;
+  height: 30px;
+
+  left: 6px;
+  top: 8px;
+
+  background:
+    #b33d3d;
+
+}
+
+
+.pin.recife {
+
+  left: 108px;
+  top: 65px;
+
+}
+
+
+.pin.cacoal {
+
+  left: 70px;
+  top: 110px;
+
+}
+
+
+/* ==================================================
+   CALENDÁRIO
+================================================== */
+
+.calendar {
+
+  position: absolute;
+
+  right: 8%;
+  top: 13%;
+
+  width: 150px;
+  height: 75px;
+
+  background:
+    #ddd6c2;
+
+  color:
+    #161616;
+
+  transform:
+    rotate(5deg);
+
+  box-shadow:
+    0 15px 25px
+    rgba(0,0,0,.4);
+
+}
+
+
+.calendar-top {
+
+  height: 30px;
+
+  background:
+    #171717;
+
+  color:
+    white;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+}
+
+
+.calendar-date {
+
+  height: 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 20px;
+
+}
+
+
+/* ==================================================
+   CARRINHO
+================================================== */
+
+.car {
+
+  position: absolute;
+
+  right: 11%;
+  bottom: 16%;
+
+  width: 150px;
+  height: 55px;
+
+  transform:
+    rotate(-3deg);
+
+  filter:
+    drop-shadow(
+      0 12px 10px
+      rgba(0,0,0,.6)
+    );
+
+}
+
+
+.car-body {
+
+  position: absolute;
+
+  bottom: 5px;
+
+  width: 150px;
+  height: 35px;
+
+  background:
+    linear-gradient(
+      #272727,
+      #080808
+    );
+
+  border-radius:
+    25px 32px 12px 12px;
+
+}
+
+
+.car-roof {
+
+  position: absolute;
+
+  left: 30px;
+  top: 0;
+
+  width: 80px;
+  height: 35px;
+
+  background:
+    #151515;
+
+  border-radius:
+    40px 40px 5px 5px;
+
+}
+
+
+.car-window {
+
+  position: absolute;
+
+  left: 42px;
+  top: 6px;
+
+  width: 56px;
+  height: 18px;
+
+  background:
+    #26313b;
+
+  border-radius:
+    15px 15px 3px 3px;
+
+}
+
+
+.wheel {
+
+  position: absolute;
+
+  bottom: 0;
+
+  width: 25px;
+  height: 25px;
+
+  background:
+    #050505;
+
+  border:
+    5px solid #303030;
+
+  border-radius: 50%;
+
+}
+
+
+.wheel.one {
+
+  left: 22px;
+
+}
+
+
+.wheel.two {
+
+  right: 22px;
+
+}
+
+
+/* ==================================================
+   LIVRO
+================================================== */
+
+.book {
+
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-3deg);
+
+  width: 260px;
+  height: 340px;
+
+  cursor: pointer;
+
+  perspective: 1000px;
+
+  z-index: 10;
+
+}
+
+
+.book-cover {
+
+  width: 100%;
+  height: 100%;
+
+  border-radius:
+    6px 12px 12px 6px;
+
+  background:
+    var(--blue);
+
+  box-shadow:
+    12px 20px 30px
+    rgba(0,0,0,.5);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 18px;
+
+  letter-spacing: 1px;
+
+  transition:
+    transform .6s ease;
+
+}
+
+
+.book:hover .book-cover {
+
+  transform:
+    translateY(-8px);
+
+}
+
+
+/* ==================================================
+   CANETA
+================================================== */
+
+.pen {
+
+  position: absolute;
+
+  right: 28%;
+  bottom: 20%;
+
+  width: 170px;
+  height: 15px;
+
+  cursor: pointer;
+
+  transform:
+    rotate(-35deg);
+
+  z-index: 20;
+
+}
+
+
+.pen-body {
+
+  width: 135px;
+  height: 8px;
+
+  background:
+    #e6e0d1;
+
+  border-radius:
+    10px;
+
+  position: absolute;
+
+  left: 20px;
+  top: 3px;
+
+}
+
+
+.pen-tip {
+
+  position: absolute;
+
+  left: 0;
+  top: 2px;
+
+  width: 25px;
+  height: 10px;
+
+  background:
+    #aaa;
+
+  clip-path:
+    polygon(
+      0 50%,
+      100% 0,
+      100% 100%
+    );
+
+}
+
+
+.pen-cap {
+
+  position: absolute;
+
+  right: 0;
+  top: 2px;
+
+  width: 22px;
+  height: 10px;
+
+  background:
+    #222;
+
+  border-radius:
+    0 5px 5px 0;
+
+}
+
+
+/* ==================================================
+   MODAIS
+================================================== */
+
+.overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    rgba(10,18,28,.88);
+
+  backdrop-filter:
+    blur(12px);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 100;
+
+}
+
+
+.modal {
+
+  width:
+    min(440px, 92vw);
+
+  background:
+    rgba(247,244,236,.98);
+
+  color:
+    #202020;
+
+  border-radius:
+    24px;
+
+  padding:
+    35px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.45);
+
+  text-align:
+    center;
+
+}
+
+
+.modal h2 {
+
+  font-family:
+    Georgia,
+    serif;
+
+  margin-bottom:
+    10px;
+
+}
+
+
+.modal p {
+
+  color:
+    #666;
+
+  margin-bottom:
+    25px;
+
+  line-height:
+    1.5;
+
+}
+
+
+input,
+textarea {
+
+  width: 100%;
+
+  border:
+    1px solid #d5d0c5;
+
+  background:
+    #fffdf8;
+
+  color:
+    #222;
+
+  border-radius:
+    14px;
+
+  padding:
+    15px;
+
+  font-size:
+    16px;
+
+  outline:
+    none;
+
+  margin-bottom:
+    12px;
+
+}
+
+
+input:focus,
+textarea:focus {
+
+  border-color:
+    var(--blue);
+
+}
+
+
+textarea {
+
+  min-height:
+    180px;
+
+  resize:
+    vertical;
+
+}
+
+
+button {
+
+  border:
+    none;
+
+  border-radius:
+    999px;
+
+  padding:
+    13px 22px;
+
+  cursor:
+    pointer;
+
+  background:
+    var(--blue);
+
+  color:
+    white;
+
+  font-size:
+    15px;
+
+  transition:
+    .2s ease;
+
+}
+
+
+button:hover {
+
+  transform:
+    translateY(-2px);
+
+  opacity:
+    .9;
+
+}
+
+
+.secondary {
+
+  background:
+    transparent;
+
+  color:
+    #303030;
+
+  border:
+    1px solid #ccc5b7;
+
+  margin-left:
+    8px;
+
+}
+
+
+.hidden {
+
+  display:
+    none !important;
+
+}
+
+
+/* ==================================================
+   LIVRO / CARTA
+================================================== */
+
+.letter-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 200;
+
+  background:
+    rgba(24,37,54,.96);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    20px;
+
+}
+
+
+.letter {
+
+  position: relative;
+
+  width:
+    min(820px, 94vw);
+
+  height:
+    min(82vh, 760px);
+
+  background:
+    #fff;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.5);
+
+  overflow: hidden;
+
+}
+
+
+.letter-page {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: none;
+
+  background:
+    white;
+
+}
+
+
+.letter-page.active {
+
+  display:
+    block;
+
+}
+
+
+.letter-controls {
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 20px;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  background:
+    rgba(0,0,0,.75);
+
+  padding:
+    8px;
+
+  border-radius:
+    999px;
+
+}
+
+
+.page-number {
+
+  color:
+    white;
+
+  font-size:
+    13px;
+
+  min-width:
+    60px;
+
+  text-align:
+    center;
+
+}
+
+
+.letter-message {
+
+  position: absolute;
+
+  bottom: 20px;
+
+  right: 20px;
+
+  background:
+    rgba(40,59,84,.95);
+
+  color:
+    white;
+
+  padding:
+    12px 18px;
+
+  border-radius:
+    999px;
+
+  font-size:
+    13px;
+
+}
+
+
+.close {
+
+  position: absolute;
+
+  top: 18px;
+
+  right: 18px;
+
+  z-index: 5;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,.65);
+
+}
+
+
+/* ==================================================
+   MURAL
+================================================== */
+
+.messages-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 300;
+
+  background:
+    var(--blue);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    20px;
+
+}
+
+
+.paper {
+
+  width:
+    min(900px, 94vw);
+
+  height:
+    min(82vh, 850px);
+
+  background:
+    var(--paper);
+
+  color:
+    var(--ink);
+
+  position:
+    relative;
+
+  padding:
+    50px;
+
+  box-shadow:
+    0 30px 90px
+    rgba(0,0,0,.45);
+
+  overflow:
+    hidden;
+
+}
+
+
+.paper::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 25px;
+
+  border:
+    1px solid
+    rgba(50,50,50,.08);
+
+  pointer-events:
+    none;
+
+}
+
+
+.paper-title {
+
+  text-align:
+    center;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    22px;
+
+  margin-bottom:
+    25px;
+
+}
+
+
+.messages {
+
+  position:
+    relative;
+
+  height:
+    calc(100% - 120px);
+
+  overflow:
+    hidden;
+
+}
+
+
+.message {
+
+  font-family:
+    "Segoe Print",
+    "Bradley Hand",
+    "Comic Sans MS",
+    cursive;
+
+  margin-bottom:
+    20px;
+
+  line-height:
+    1.45;
+
+  transform:
+    rotate(
+      var(--rotation)
+    );
+
+}
+
+
+.message-name {
+
+  font-weight:
+    bold;
+
+  font-size:
+    17px;
+
+}
+
+
+.message-text {
+
+  white-space:
+    pre-wrap;
+
+  font-size:
+    16px;
+
+}
+
+
+.message-date {
+
+  font-family:
+    sans-serif;
+
+  font-size:
+    10px;
+
+  opacity:
+    .45;
+
+  margin-top:
+    3px;
+
+}
+
+
+.message-form {
+
+  position:
+    absolute;
+
+  left: 50%;
+
+  bottom: 18px;
+
+  transform:
+    translateX(-50%);
+
+  display:
+    flex;
+
+  gap: 8px;
+
+}
+
+
+.message-form input {
+
+  width:
+    150px;
+
+  margin: 0;
+
+}
+
+
+.message-form button {
+
+  margin: 0;
+
+}
+
+
+.archive-button {
+
+  position:
+    absolute;
+
+  top: 20px;
+
+  left: 20px;
+
+  background:
+    rgba(40,59,84,.9);
+
+}
+
+
+.close-messages {
+
+  position:
+    absolute;
+
+  top: 20px;
+
+  right: 20px;
+
+  width:
+    40px;
+
+  height:
+    40px;
+
+  padding: 0;
+
+  border-radius:
+    50%;
+
+}
+
+
+/* ==================================================
+   ARQUIVO DE FOLHAS
+================================================== */
+
+.archive {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 400;
+
+  background:
+    rgba(24,37,54,.98);
+
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  padding:
+    25px;
+
+}
+
+
+.archive h2 {
+
+  font-family:
+    Georgia,
+    serif;
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.archive-list {
+
+  display:
+    flex;
+
+  gap:
+    10px;
+
+  flex-wrap:
+    wrap;
+
+  justify-content:
+    center;
+
+  max-width:
+    700px;
+
+}
+
+
+.archive-list button {
+
+  background:
+    #f7f4ec;
+
+  color:
+    #222;
+
+}
+
+
+.archive-paper {
+
+  width:
+    min(850px, 92vw);
+
+  height:
+    min(75vh, 700px);
+
+  background:
+    var(--paper);
+
+  color:
+    var(--ink);
+
+  padding:
+    45px;
+
+  overflow:
+    hidden;
+
+  box-shadow:
+    0 25px 70px
+    rgba(0,0,0,.45);
+
+}
+
+
+.archive-paper h3 {
+
+  font-family:
+    Georgia,
+    serif;
+
+  margin-bottom:
+    20px;
+
+}
+
+
+.archive-close {
+
+  position:
+    absolute;
+
+  right:
+    20px;
+
+  top:
+    20px;
+
+}
+
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 700px) {
+
+  .desk {
+
+    left: 10px;
+    right: 10px;
+
+    top: 10px;
+    bottom: 10px;
+
+    border-radius:
+      18px;
+
+  }
+
+
+  .book {
+
+    width:
+      190px;
+
+    height:
+      250px;
+
+  }
+
+
+  .map-object {
+
+    transform:
+      scale(.7)
+      rotate(-4deg);
+
+    transform-origin:
+      top left;
+
+  }
+
+
+  .calendar {
+
+    transform:
+      scale(.7)
+      rotate(5deg);
+
+    transform-origin:
+      top right;
+
+  }
+
+
+  .car {
+
+    right:
+      8%;
+
+    bottom:
+      13%;
+
+    transform:
+      scale(.75)
+      rotate(-3deg);
+
+    transform-origin:
+      right bottom;
+
+  }
+
+
+  .pen {
+
+    right:
+      18%;
+
+    bottom:
+      22%;
+
+    transform:
+      scale(.75)
+      rotate(-35deg);
+
+  }
+
+
+  .paper {
+
+    padding:
+      35px 25px;
+
+    height:
+      88vh;
+
+  }
+
+
+  .message-form {
+
+    width:
+      calc(100% - 40px);
+
+  }
+
+
+  .message-form input {
+
+    width:
+      35%;
+
+  }
+
+
+  .message-form textarea {
+
+    width:
+      45%;
+
+  }
+
+
+}
+
+
+/* ==================================================
+   CARREGANDO
+================================================== */
+
+.loading {
+
+  position:
+    fixed;
+
+  inset:
+    0;
+
+  z-index:
+    999;
+
+  background:
+    var(--blue);
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size:
+    18px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+<div id="app">
+
+<div class="loading" id="loading">
+
+  para você.
+
+</div>
+
+
+<!-- =================================================
+     MESA
+================================================= -->
+
+<div class="desk">
+
+
+  <!-- MAPA -->
+
+  <div class="map-object">
+
+    <div class="map-shape">
+
+      <div class="brazil"></div>
+
+      <div class="pin recife"
+           title="Recife - PE">
+      </div>
+
+      <div class="pin cacoal"
+           title="Cacoal - RO">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CALENDÁRIO -->
+
+  <div class="calendar">
+
+    <div class="calendar-top">
+      CALENDÁRIO
+    </div>
+
+    <div class="calendar-date">
+      10 de agosto de 2025
+    </div>
+
+  </div>
+
+
+  <!-- CARRINHO -->
+
+  <div class="car"
+       title="Cadillac Escalade">
+
+    <div class="car-roof"></div>
+
+    <div class="car-window"></div>
+
+    <div class="car-body"></div>
+
+    <div class="wheel one"></div>
+    <div class="wheel two"></div>
+
+  </div>
+
+
+  <!-- LIVRO -->
+
+  <div
+    class="book"
+    id="book"
+    title="Abrir livro"
+  >
+
+    <div class="book-cover">
+
+      uma carta.
+
+    </div>
+
+  </div>
+
+
+  <!-- CANETA -->
+
+  <div
+    class="pen"
+    id="pen"
+    title="Escrever"
+  >
+
+    <div class="pen-tip"></div>
+
+    <div class="pen-body"></div>
+
+    <div class="pen-cap"></div>
+
+  </div>
+
+
+</div>
+
+
+<!-- =================================================
+     MODAL DE SENHA
+================================================= -->
+
+<div
+  class="overlay hidden"
+  id="passwordOverlay"
+>
+
+  <div class="modal">
+
+    <h2>Teu aniversário</h2>
+
+    <p>
+      Para abrir o livro, digite a data
+      somente com números.
+    </p>
+
+    <input
+      id="passwordInput"
+      type="password"
+      inputmode="numeric"
+      placeholder="DDMMAAAA"
+      maxlength="8"
+      autocomplete="off"
+    >
+
+    <div>
+
+      <button
+        id="unlockButton"
+      >
+        abrir
+      </button>
+
+      <button
+        class="secondary"
+        id="cancelPassword"
+      >
+        cancelar
+      </button>
+
+    </div>
+
+    <p
+      id="passwordError"
+      style="
+        color:#9b3d3d;
+        margin-top:15px;
+        margin-bottom:0;
+      "
+    ></p>
+
+  </div>
+
+</div>
+
+
+<!-- =================================================
+     LIVRO
+================================================= -->
+
+<div
+  class="letter-overlay hidden"
+  id="letterOverlay"
+>
+
+  <button
+    class="close"
+    id="closeLetter"
+  >
+    ×
+  </button>
+
+
+  <div class="letter">
+
+    <img
+      class="letter-page active"
+      src="assets/carta-1.png"
+      alt="Página 1"
+    >
+
+    <img
+      class="letter-page"
+      src="assets/carta-2.png"
+      alt="Página 2"
+    >
+
+    <img
+      class="letter-page"
+      src="assets/carta-3.png"
+      alt="Página 3"
+    >
+
+    <img
+      class="letter-page"
+      src="assets/carta-4.png"
+      alt="Página 4"
+    >
+
+
+    <div class="letter-controls">
+
+      <button id="previousPage">
+        ←
+      </button>
+
+      <span
+        class="page-number"
+        id="pageNumber"
+      >
+        1 / 4
+      </span>
+
+      <button id="nextPage">
+        →
+      </button>
+
+    </div>
+
+
+    <div
+      class="letter-message"
+      id="letterMessage"
+    >
+      toque na caneta e escreva
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =================================================
+     MENSAGENS
+================================================= -->
+
+<div
+  class="messages-overlay hidden"
+  id="messagesOverlay"
+>
+
+  <div class="paper">
+
+    <button
+      class="archive-button"
+      id="archiveButton"
+    >
+      folhas anteriores
+    </button>
+
+    <button
+      class="close-messages"
+      id="closeMessages"
+    >
+      ×
+    </button>
+
+
+    <div class="paper-title">
+
+      if u have something to say,<br>
+      say it here.
+
+    </div>
+
+
+    <div
+      class="messages"
+      id="messages"
+    >
+
+    </div>
+
+
+    <div class="message-form">
+
+      <input
+        id="nameInput"
+        type="text"
+        maxlength="80"
+        placeholder="teu nome"
+      >
+
+      <input
+        id="messageInput"
+        type="text"
+        maxlength="2000"
+        placeholder="escreva aqui..."
+      >
+
+      <button
+        id="sendButton"
+      >
+        enviar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =================================================
+     ARQUIVO
+================================================= -->
+
+<div
+  class="archive hidden"
+  id="archive"
+>
+
+  <button
+    class="archive-close"
+    id="closeArchive"
+  >
+    fechar
+  </button>
+
+  <h2>
+    folhas anteriores
+  </h2>
+
+  <div
+    class="archive-list"
+    id="archiveList"
+  >
+  </div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   CONFIGURAÇÕES
+================================================== */
+
+
+/*
+ * SENHA DO LIVRO
+ */
+
+const PASSWORD = "25102008";
+
+
+/*
+ * COLOQUE A URL DO SEU GOOGLE APPS SCRIPT AQUI.
+ *
+ * Exemplo:
+ *
+ * const API_URL =
+ * "https://script.google.com/macros/s/ABC123/exec";
+ *
+ */
+
+const API_URL =
+"COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT";
+
+
+/*
+ * Quantas mensagens cabem em cada folha.
+ *
+ * Quando atingir esse número,
+ * uma nova folha será criada automaticamente.
+ */
+
+const MESSAGES_PER_SHEET = 6;
+
+
+/* ==================================================
+   ELEMENTOS
+================================================== */
+
+const loading =
+document.getElementById("loading");
+
+const book =
+document.getElementById("book");
+
+const pen =
+document.getElementById("pen");
+
+const passwordOverlay =
+document.getElementById("passwordOverlay");
+
+const passwordInput =
+document.getElementById("passwordInput");
+
+const passwordError =
+document.getElementById("passwordError");
+
+const unlockButton =
+document.getElementById("unlockButton");
+
+const cancelPassword =
+document.getElementById("cancelPassword");
+
+const letterOverlay =
+document.getElementById("letterOverlay");
+
+const closeLetter =
+document.getElementById("closeLetter");
+
+const pages =
+document.querySelectorAll(".letter-page");
+
+const previousPage =
+document.getElementById("previousPage");
+
+const nextPage =
+document.getElementById("nextPage");
+
+const pageNumber =
+document.getElementById("pageNumber");
+
+const letterMessage =
+document.getElementById("letterMessage");
+
+const messagesOverlay =
+document.getElementById("messagesOverlay");
+
+const closeMessages =
+document.getElementById("closeMessages");
+
+const messagesContainer =
+document.getElementById("messages");
+
+const nameInput =
+document.getElementById("nameInput");
+
+const messageInput =
+document.getElementById("messageInput");
+
+const sendButton =
+document.getElementById("sendButton");
+
+const archiveButton =
+document.getElementById("archiveButton");
+
+const archive =
+document.getElementById("archive");
+
+const archiveList =
+document.getElementById("archiveList");
+
+const closeArchive =
+document.getElementById("closeArchive");
+
+
+/* ==================================================
+   ESTADO
+================================================== */
+
+let currentPage = 0;
+
+let unlocked = false;
+
+let allMessages = [];
+
+let currentMessageSheet = 0;
+
+
+/* ==================================================
+   INICIALIZAÇÃO
+================================================== */
+
+window.addEventListener(
+  "load",
+  function() {
+
+    setTimeout(
+      function() {
+
+        loading.classList.add("hidden");
+
+      },
+      700
+    );
+
+  }
+);
+
+
+/* ==================================================
+   LIVRO
+================================================== */
+
+book.addEventListener(
+  "click",
+  function() {
+
+    if (!unlocked) {
+
+      passwordOverlay
+        .classList
+        .remove("hidden");
+
+      passwordInput.focus();
+
+      return;
+
+    }
+
+    abrirCarta();
+
+  }
+);
+
+
+/* ==================================================
+   SENHA
+================================================== */
+
+unlockButton.addEventListener(
+  "click",
+  verificarSenha
+);
+
+
+passwordInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+
+      verificarSenha();
+
+    }
+
+  }
+);
+
+
+function verificarSenha() {
+
+  const value =
+    passwordInput.value.trim();
+
+  if (value === PASSWORD) {
+
+    unlocked = true;
+
+    passwordOverlay
+      .classList
+      .add("hidden");
+
+    passwordInput.value = "";
+
+    passwordError.textContent = "";
+
+    abrirCarta();
+
+  } else {
+
+    passwordError.textContent =
+      "A senha não está correta.";
+
+    passwordInput.select();
+
+  }
+
+}
+
+
+cancelPassword.addEventListener(
+  "click",
+  function() {
+
+    passwordOverlay
+      .classList
+      .add("hidden");
+
+    passwordInput.value = "";
+
+    passwordError.textContent = "";
+
+  }
+);
+
+
+/* ==================================================
+   CARTA
+================================================== */
+
+function abrirCarta() {
+
+  currentPage = 0;
+
+  atualizarPagina();
+
+  letterOverlay
+    .classList
+    .remove("hidden");
+
+}
+
+
+function atualizarPagina() {
+
+  pages.forEach(
+    function(page, index) {
+
+      page.classList.toggle(
+        "active",
+        index === currentPage
+      );
+
+    }
+  );
+
+
+  pageNumber.textContent =
+    `${currentPage + 1} / ${pages.length}`;
+
+
+  previousPage.disabled =
+    currentPage === 0;
+
+
+  nextPage.disabled =
+    currentPage === pages.length - 1;
+
+
+  if (
+    currentPage ===
+    pages.length - 1
+  ) {
+
+    letterMessage
+      .classList
+      .remove("hidden");
+
+  } else {
+
+    letterMessage
+      .classList
+      .add("hidden");
+
+  }
+
+}
+
+
+previousPage.addEventListener(
+  "click",
+  function() {
+
+    if (currentPage > 0) {
+
+      currentPage--;
+
+      atualizarPagina();
+
+    }
+
+  }
+);
+
+
+nextPage.addEventListener(
+  "click",
+  function() {
+
+    if (
+      currentPage <
+      pages.length - 1
+    ) {
+
+      currentPage++;
+
+      atualizarPagina();
+
+    }
+
+  }
+);
+
+
+closeLetter.addEventListener(
+  "click",
+  function() {
+
+    letterOverlay
+      .classList
+      .add("hidden");
+
+  }
+);
+
+
+/* ==================================================
+   CANETA
+================================================== */
+
+pen.addEventListener(
+  "click",
+  function() {
+
+    if (!unlocked) {
+
+      passwordOverlay
+        .classList
+        .remove("hidden");
+
+      passwordInput.focus();
+
+      return;
+
+    }
+
+    abrirMensagens();
+
+  }
+);
+
+
+/* ==================================================
+   ABRIR MENSAGENS
+================================================== */
+
+async function abrirMensagens() {
+
+  messagesOverlay
+    .classList
+    .remove("hidden");
+
+  await carregarMensagens();
+
+}
+
+
+/* ==================================================
+   FECHAR MENSAGENS
+================================================== */
+
+closeMessages.addEventListener(
+  "click",
+  function() {
+
+    messagesOverlay
+      .classList
+      .add("hidden");
+
+  }
+);
+
+
+/* ==================================================
+   CARREGAR MENSAGENS
+================================================== */
+
+async function carregarMensagens() {
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        "?action=messages&time=" +
+        Date.now()
+      );
+
+    const data =
+      await response.json();
+
+    if (
+      data.success &&
+      Array.isArray(data.messages)
+    ) {
+
+      allMessages =
+        data.messages;
+
+    } else {
+
+      allMessages = [];
+
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    allMessages = [];
+
+  }
+
+  renderizarFolhaAtual();
+
+}
+
+
+/* ==================================================
+   ORGANIZAR FOLHAS
+================================================== */
+
+function obterFolhas() {
+
+  const sheets = [];
+
+  for (
+    let i = 0;
+    i < allMessages.length;
+    i += MESSAGES_PER_SHEET
+  ) {
+
+    sheets.push(
+      allMessages.slice(
+        i,
+        i + MESSAGES_PER_SHEET
+      )
+    );
+
+  }
+
+
+  /*
+   * Se ainda não houver nenhuma mensagem,
+   * existe uma folha vazia.
+   */
+
+  if (sheets.length === 0) {
+
+    sheets.push([]);
+
+  }
+
+
+  return sheets;
+
+}
+
+
+/* ==================================================
+   RENDERIZAR FOLHA ATUAL
+================================================== */
+
+function renderizarFolhaAtual() {
+
+  const sheets =
+    obterFolhas();
+
+
+  /*
+   * A folha mais recente fica aberta.
+   */
+
+  currentMessageSheet =
+    sheets.length - 1;
+
+
+  renderizarSheet(
+    currentMessageSheet
+  );
+
+  atualizarArquivo(
+    sheets
+  );
+
+}
+
+
+/* ==================================================
+   RENDERIZAR UMA FOLHA
+================================================== */
+
+function renderizarSheet(index) {
+
+  const sheets =
+    obterFolhas();
+
+  const sheet =
+    sheets[index] || [];
+
+
+  messagesContainer.innerHTML =
+    "";
+
+
+  if (sheet.length === 0) {
+
+    const empty =
+      document.createElement("div");
+
+    empty.style.cssText =
+      `
+      text-align:center;
+      margin-top:100px;
+      opacity:.45;
+      font-family:Georgia,serif;
+      `;
+
+    empty.textContent =
+      "ainda não há mensagens.";
+
+    messagesContainer.appendChild(
+      empty
+    );
+
+    return;
+
+  }
+
+
+  sheet.forEach(
+    function(item) {
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "message";
+
+
+      const rotation =
+        (Math.random() * 2 - 1)
+        .toFixed(2);
+
+      wrapper.style
+        .setProperty(
+          "--rotation",
+          rotation + "deg"
+        );
+
+
+      const name =
+        document.createElement("div");
+
+      name.className =
+        "message-name";
+
+      name.textContent =
+        item.name;
+
+
+      const text =
+        document.createElement("div");
+
+      text.className =
+        "message-text";
+
+      text.textContent =
+        item.message;
+
+
+      const date =
+        document.createElement("div");
+
+      date.className =
+        "message-date";
+
+      date.textContent =
+        formatarData(
+          item.timestamp
+        );
+
+
+      wrapper.appendChild(name);
+
+      wrapper.appendChild(text);
+
+      wrapper.appendChild(date);
+
+      messagesContainer.appendChild(
+        wrapper
+      );
+
+    }
+  );
+
+}
+
+
+/* ==================================================
+   ARQUIVO DE FOLHAS
+================================================== */
+
+function atualizarArquivo(sheets) {
+
+  archiveList.innerHTML = "";
+
+
+  /*
+   * Só mostra folhas antigas.
+   */
+
+  const oldSheets =
+    sheets.length - 1;
+
+
+  if (oldSheets <= 0) {
+
+    const text =
+      document.createElement("p");
+
+    text.style.opacity = ".6";
+
+    text.textContent =
+      "Ainda não existem folhas anteriores.";
+
+    archiveList.appendChild(
+      text
+    );
+
+    return;
+
+  }
+
+
+  for (
+    let i = oldSheets - 1;
+    i >= 0;
+    i--
+  ) {
+
+    const button =
+      document.createElement("button");
+
+    button.textContent =
+      `folha ${i + 1}`;
+
+
+    button.addEventListener(
+      "click",
+      function() {
+
+        currentMessageSheet = i;
+
+        renderizarSheet(i);
+
+        archive.classList.add(
+          "hidden"
+        );
+
+      }
+    );
+
+
+    archiveList.appendChild(
+      button
+    );
+
+  }
+
+}
+
+
+/* ==================================================
+   ABRIR ARQUIVO
+================================================== */
+
+archiveButton.addEventListener(
+  "click",
+  function() {
+
+    const sheets =
+      obterFolhas();
+
+    atualizarArquivo(
+      sheets
+    );
+
+    archive.classList
+      .remove("hidden");
+
+  }
+);
+
+
+/* ==================================================
+   FECHAR ARQUIVO
+================================================== */
+
+closeArchive.addEventListener(
+  "click",
+  function() {
+
+    archive.classList
+      .add("hidden");
+
+  }
+);
+
+
+/* ==================================================
+   ENVIAR MENSAGEM
+================================================== */
+
+sendButton.addEventListener(
+  "click",
+  enviarMensagem
+);
+
+
+messageInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey
+    ) {
+
+      event.preventDefault();
+
+      enviarMensagem();
+
+    }
+
+  }
+);
+
+
+async function enviarMensagem() {
+
+  const name =
+    nameInput.value.trim();
+
+  const message =
+    messageInput.value.trim();
+
+
+  if (!name) {
+
+    alert(
+      "Antes de enviar, coloque seu nome."
+    );
+
+    nameInput.focus();
+
+    return;
+
+  }
+
+
+  if (!message) {
+
+    alert(
+      "Escreva uma mensagem."
+    );
+
+    messageInput.focus();
+
+    return;
+
+  }
+
+
+  if (
+    API_URL ===
+    "COLE_AQUI_A_URL_DO_SEU_APPS_SCRIPT"
+  ) {
+
+    alert(
+      "Você ainda não colocou a URL do Google Apps Script no código."
+    );
+
+    return;
+
+  }
+
+
+  sendButton.disabled = true;
+
+  sendButton.textContent =
+    "enviando...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body: JSON.stringify({
+            name: name,
+            message: message
+          })
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      throw new Error(
+        data.error ||
+        "Erro ao salvar."
+      );
+
+    }
+
+
+    nameInput.value = "";
+
+    messageInput.value = "";
+
+
+    await carregarMensagens();
+
+
+    /*
+     * Se uma nova folha foi criada,
+     * ela será automaticamente aberta.
+     */
+
+    alert(
+      "Mensagem guardada."
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Não foi possível salvar a mensagem. Verifique se o Google Apps Script está publicado corretamente."
+    );
+
+  }
+
+
+  sendButton.disabled = false;
+
+  sendButton.textContent =
+    "enviar";
+
+}
+
+
+/* ==================================================
+   DATA
+================================================== */
+
+function formatarData(value) {
+
+  try {
+
+    const date =
+      new Date(value);
+
+    return date.toLocaleString(
+      "pt-BR",
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    );
+
+  } catch {
+
+    return "";
+
+  }
+
+}
+
+
+/* ==================================================
+   ESC
+================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      passwordOverlay
+        .classList
+        .add("hidden");
+
+      letterOverlay
+        .classList
+        .add("hidden");
+
+      messagesOverlay
+        .classList
+        .add("hidden");
+
+      archive
+        .classList
+        .add("hidden");
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+
+</html>
