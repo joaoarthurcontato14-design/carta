@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#283b54">
+<title>para você.</title>
+<style>
+:root{
+  --blue:#283b54;
+  --blue2:#22344b;
+  --blue3:#314963;
+  --desk:#080909;
+  --paper:#f6f2e8;
+  --ink:#252525;
+  --gold:#b8a06a;
+  --red:#a83f3f;
+  --shadow:rgba(0,0,0,.52);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--blue);color:#fff}
+button,input,textarea{font:inherit}
+button{border:0;cursor:pointer}
+.hidden{display:none!important}
+#app{width:100vw;height:100vh;position:relative;overflow:hidden;background:
+  radial-gradient(circle at 50% 42%,rgba(72,95,121,.35),transparent 42%),
+  linear-gradient(135deg,#2b405a 0%,#263950 48%,#213249 100%)}
+#app:before{content:"";position:absolute;inset:0;opacity:.16;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.35) .6px,transparent .6px);background-size:5px 5px}
+.loading{position:fixed;inset:0;z-index:9999;background:var(--blue);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:18px;letter-spacing:.02em;transition:opacity .5s}
+/* DESK */
+.desk{position:absolute;left:3.5vw;right:3.5vw;top:5vh;bottom:5vh;border-radius:28px;overflow:hidden;background:
+  linear-gradient(105deg,rgba(255,255,255,.018),transparent 28%),
+  radial-gradient(circle at 18% 20%,rgba(255,255,255,.028),transparent 20%),
+  linear-gradient(160deg,#111212,#070808 72%);box-shadow:0 35px 90px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.045)}
+.desk:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 0 49%,rgba(255,255,255,.012) 50%,transparent 51%)}
+/* SMALL LABEL */
+.scene-label{position:absolute;left:28px;top:22px;z-index:4;color:rgba(255,255,255,.42);font:11px/1.4 Georgia,serif;letter-spacing:.18em;text-transform:uppercase}
+/* GLOBE */
+.globe-wrap{position:absolute;left:7%;top:17%;width:230px;height:230px;z-index:3;filter:drop-shadow(0 18px 20px rgba(0,0,0,.45));transform:rotate(-5deg)}
+.globe{position:absolute;inset:15px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#61778d 0 3%,#334e66 25%,#182f46 62%,#0e1d2c 100%);box-shadow:inset -22px -18px 30px rgba(0,0,0,.45),inset 13px 10px 20px rgba(255,255,255,.12),0 0 0 7px #151719,0 0 0 9px rgba(190,190,180,.16);overflow:hidden}
+.globe:before{content:"";position:absolute;inset:-15%;background:repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.07) 39px 40px,transparent 41px 78px),repeating-linear-gradient(0deg,transparent 0 42px,rgba(255,255,255,.055) 43px 44px,transparent 45px 86px);border-radius:50%;transform:rotate(-10deg) scale(1.05)}
+.continent{position:absolute;background:linear-gradient(145deg,#687963,#344c3c);filter:drop-shadow(2px 2px 2px rgba(0,0,0,.25));opacity:.92}
+.na{left:19%;top:21%;width:65px;height:45px;border-radius:55% 45% 48% 35%;transform:rotate(-14deg);clip-path:polygon(0 35%,20% 8%,52% 0,76% 22%,100% 35%,76% 54%,72% 82%,48% 100%,29% 71%,8% 73%)}
+.sa{left:48%;top:45%;width:45px;height:86px;border-radius:45% 55% 40% 50%;transform:rotate(15deg);clip-path:polygon(37% 0,72% 14%,88% 36%,68% 55%,72% 74%,52% 100%,25% 76%,0 55%,15% 31%)}
+.eur{left:51%;top:22%;width:70px;height:39px;border-radius:45%;clip-path:polygon(0 44%,16% 18%,42% 24%,56% 0,77% 22%,100% 29%,80% 56%,59% 62%,49% 88%,30% 72%,12% 80%)}
+.af{left:56%;top:39%;width:50px;height:65px;border-radius:50% 45% 45% 52%;clip-path:polygon(31% 0,70% 10%,88% 36%,74% 65%,55% 100%,27% 84%,0 55%,16% 25%)}
+.as{left:69%;top:30%;width:62px;height:60px;border-radius:50%;clip-path:polygon(0 25%,23% 0,56% 12%,79% 21%,100% 47%,76% 59%,72% 84%,45% 68%,23% 82%,9% 59%)}
+.au{left:77%;top:66%;width:34px;height:20px;border-radius:50%;transform:rotate(8deg)}
+.brazil-mark{position:absolute;left:55%;top:52%;width:9px;height:9px;border-radius:50%;background:#d7d0bd;box-shadow:0 0 0 2px rgba(255,255,255,.2)}
+.pin{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--red);border:2px solid #e8d6b7;box-shadow:0 0 0 4px rgba(168,63,63,.16),0 4px 7px rgba(0,0,0,.4);z-index:5}
+.pin:after{content:"";position:absolute;left:4px;top:9px;width:3px;height:24px;background:var(--red);border-radius:3px;transform:rotate(9deg);transform-origin:top}
+.pin.recife{left:58%;top:51%}.pin.cacoal{left:52%;top:57%}
+.place-tag{position:absolute;z-index:7;font:10px Georgia,serif;color:#fff;background:rgba(0,0,0,.62);padding:4px 7px;border-radius:5px;white-space:nowrap;opacity:.86}.tag-recife{left:63%;top:47%}.tag-cacoal{left:58%;top:62%}
+.globe-caption{position:absolute;bottom:-3px;left:0;right:0;text-align:center;color:rgba(255,255,255,.48);font:10px Georgia,serif;letter-spacing:.08em}
+/* BOOK */
+.book{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%) rotate(-3deg);width:270px;height:350px;z-index:20;cursor:pointer;filter:drop-shadow(15px 22px 20px rgba(0,0,0,.6));transition:transform .35s ease}
+.book:hover{transform:translate(-50%,-54%) rotate(-2deg) scale(1.015)}
+.book-cover{position:absolute;inset:0;border-radius:6px 13px 13px 6px;background:linear-gradient(100deg,#1e2d41 0%,#283b54 52%,#344a64 100%);box-shadow:inset 7px 0 0 rgba(0,0,0,.23),inset -2px 0 rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#e8e5dc;font:18px Georgia,serif;letter-spacing:.12em}
+.book-cover:before{content:"";position:absolute;inset:15px;border:1px solid rgba(225,219,204,.23);border-radius:4px}
+.book-cover:after{content:"";position:absolute;left:18px;top:0;bottom:0;width:3px;background:linear-gradient(#172436,#41546b,#172436);opacity:.9}
+.book-title{position:relative;text-align:center;z-index:2}.book-sub{display:block;font-size:9px;letter-spacing:.28em;text-transform:uppercase;margin-top:12px;opacity:.55}
+/* CALENDAR */
+.calendar{position:absolute;right:7%;top:12%;width:170px;height:108px;z-index:7;transform:rotate(4deg);filter:drop-shadow(0 18px 16px rgba(0,0,0,.5));perspective:500px}
+.calendar-base{position:absolute;inset:0;border-radius:7px;background:linear-gradient(145deg,#ddd5c1,#9d9788);box-shadow:inset 0 1px rgba(255,255,255,.8),0 0 0 1px rgba(0,0,0,.4);transform:rotateX(3deg)}
+.calendar-page{position:absolute;left:8px;right:8px;top:9px;bottom:8px;background:#f4f0e4;color:#161616;border-radius:4px;box-shadow:0 2px 5px rgba(0,0,0,.3);overflow:hidden}
+.calendar-rings{position:absolute;left:17px;right:17px;top:3px;display:flex;justify-content:space-between;z-index:2}.ring{width:12px;height:20px;border:3px solid #333;border-radius:7px;background:#aaa;box-shadow:0 1px 2px #000}
+.calendar-head{height:26px;background:#171717;color:#eee;display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:.14em;text-transform:uppercase}.calendar-day{font:700 37px/1 Georgia,serif;text-align:center;margin-top:8px}.calendar-month{font-size:9px;text-align:center;letter-spacing:.2em;text-transform:uppercase;margin-top:2px}
+/* CADILLAC TOY */
+.cadillac{position:absolute;right:10%;bottom:17%;width:205px;height:95px;z-index:9;cursor:default;filter:drop-shadow(0 16px 10px rgba(0,0,0,.65));transform:rotate(-4deg)}
+.cad-body{position:absolute;left:5px;right:5px;bottom:15px;height:45px;background:linear-gradient(#1d1d1e,#050505);border-radius:22px 35px 11px 12px;border:1px solid #3a3a3a;box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.cad-roof{position:absolute;left:53px;top:10px;width:103px;height:42px;background:linear-gradient(125deg,#252526,#070707);border-radius:48px 50px 7px 7px;border:1px solid #343434}.cad-window{position:absolute;left:66px;top:16px;width:76px;height:25px;background:linear-gradient(135deg,#34414c,#0b1117);clip-path:polygon(0 100%,11% 7%,72% 0,100% 100%);border-radius:5px}.cad-grille{position:absolute;right:4px;bottom:26px;width:29px;height:24px;border:2px solid #999;border-radius:4px;background:repeating-linear-gradient(90deg,#222 0 3px,#aaa 4px 5px);box-shadow:0 0 8px rgba(255,255,255,.1)}.cad-badge{position:absolute;right:13px;bottom:48px;width:9px;height:9px;border-radius:50%;background:#b8a06a;box-shadow:0 0 5px rgba(255,220,130,.5)}
+.wheel{position:absolute;bottom:1px;width:30px;height:30px;border-radius:50%;background:#050505;border:6px solid #333;box-shadow:inset 0 0 0 2px #111}.wheel.one{left:30px}.wheel.two{right:30px}.toy-label{position:absolute;right:6px;bottom:-8px;color:rgba(255,255,255,.36);font:9px Georgia,serif}
+/* PEN */
+.pen{position:absolute;right:26%;bottom:13%;width:180px;height:22px;z-index:25;cursor:pointer;transform:rotate(-34deg);filter:drop-shadow(0 10px 8px rgba(0,0,0,.55));transition:transform .25s}.pen:hover{transform:rotate(-34deg) translateY(-5px)}.pen-body{position:absolute;left:22px;top:5px;width:138px;height:11px;border-radius:10px;background:linear-gradient(#e9e4d7,#aaa595);box-shadow:inset 0 1px rgba(255,255,255,.8)}.pen-tip{position:absolute;left:0;top:6px;width:29px;height:10px;background:#9b9b97;clip-path:polygon(0 50%,100% 0,100% 100%)}.pen-cap{position:absolute;right:0;top:5px;width:23px;height:11px;background:#1e1e1e;border-radius:0 6px 6px 0}.pen-note{position:absolute;right:-30px;top:-34px;color:rgba(255,255,255,.48);font:10px Georgia,serif;white-space:nowrap;transform:rotate(34deg)}
+/* MODALS */
+.overlay,.letter-overlay,.messages-overlay,.archive{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000;background:rgba(12,20,30,.84);backdrop-filter:blur(14px)}
+.modal{width:min(430px,92vw);background:rgba(246,242,232,.98);color:#202020;border-radius:24px;padding:34px;box-shadow:0 35px 90px rgba(0,0,0,.55);text-align:center;border:1px solid rgba(255,255,255,.35)}.modal h2{font:24px Georgia,serif;margin-bottom:10px}.modal p{color:#686868;line-height:1.55;margin-bottom:20px}.modal input{width:100%;padding:15px 16px;border-radius:14px;border:1px solid #d2cbbd;background:#fffdf8;outline:none;text-align:center;letter-spacing:.18em;font-size:17px;margin-bottom:12px}.modal input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(40,59,84,.1)}.primary{background:var(--blue);color:white;padding:13px 22px;border-radius:999px}.secondary{background:transparent;color:#333;border:1px solid #ccc3b3;padding:12px 20px;border-radius:999px;margin-left:8px}.error{color:#a33e3e!important;font-size:13px!important;margin:12px 0 0!important}
+/* LETTER */
+.letter-overlay{z-index:1200;background:rgba(26,39,56,.96)}.letter-shell{position:relative;width:min(900px,94vw);height:min(86vh,780px);display:flex;align-items:center;justify-content:center}.letter{position:relative;width:100%;height:100%;background:#fff;box-shadow:0 35px 100px rgba(0,0,0,.6);overflow:hidden;border-radius:2px}.letter-page{width:100%;height:100%;object-fit:contain;display:none;background:#fff}.letter-page.active{display:block}.letter-controls{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:7px;background:rgba(15,15,15,.78);border:1px solid rgba(255,255,255,.12);border-radius:999px;backdrop-filter:blur(8px)}.letter-controls button{width:36px;height:36px;border-radius:50%;background:#283b54;color:white}.letter-controls button:disabled{opacity:.35;cursor:default}.page-number{min-width:58px;text-align:center;font-size:12px}.letter-message{position:absolute;right:18px;bottom:18px;padding:10px 15px;border-radius:999px;background:rgba(40,59,84,.94);font:12px Georgia,serif;color:white}.close{position:absolute;right:18px;top:18px;z-index:5;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:24px}
+/* MESSAGES */
+.messages-overlay{z-index:1300;background:rgba(26,39,56,.96)}.paper{position:relative;width:min(940px,94vw);height:min(84vh,820px);background:var(--paper);color:var(--ink);padding:52px 60px;box-shadow:0 35px 100px rgba(0,0,0,.6);overflow:hidden;background-image:linear-gradient(rgba(80,70,50,.035) 1px,transparent 1px);background-size:100% 31px}.paper:before{content:"";position:absolute;inset:24px;border:1px solid rgba(60,50,40,.08);pointer-events:none}.paper-title{text-align:center;font-family:"Courier New",monospace;font-size:17px;margin-bottom:20px}.messages{position:relative;height:calc(100% - 120px);overflow:auto;padding:4px 12px 100px}.message{font-family:"Segoe Print","Bradley Hand","Comic Sans MS",cursive;margin:0 0 22px;line-height:1.45;transform:rotate(var(--rotation));max-width:88%}.message:nth-child(even){margin-left:7%}.message-name{font-weight:700;font-size:16px}.message-text{white-space:pre-wrap;font-size:16px}.message-date{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:9px;opacity:.45;margin-top:4px}.message-form{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:min(720px,calc(100% - 50px));display:grid;grid-template-columns:170px 1fr auto;gap:8px;padding:9px;background:rgba(246,242,232,.94);border:1px solid rgba(70,60,45,.12);box-shadow:0 10px 25px rgba(0,0,0,.13);border-radius:18px}.message-form input,.message-form textarea{width:100%;margin:0;border:1px solid #d6cfc1;background:#fffdf8;color:#222;border-radius:11px;padding:11px;outline:none}.message-form textarea{min-height:44px;max-height:110px;resize:vertical}.message-form button{background:var(--blue);color:#fff;border-radius:12px;padding:0 18px}.archive-button{position:absolute;top:18px;left:22px;background:transparent;color:#283b54;border:1px solid rgba(40,59,84,.2);padding:8px 13px;border-radius:999px}.close-messages{position:absolute;right:20px;top:18px;width:38px;height:38px;border-radius:50%;background:rgba(40,59,84,.95);color:#fff;font-size:22px}.archive{z-index:1400;background:rgba(26,39,56,.98);flex-direction:column}.archive h2{font:24px Georgia,serif;margin-bottom:20px}.archive-list{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;max-width:720px}.archive-list button{background:#f6f2e8;color:#222;border-radius:999px;padding:10px 16px}..archive-paper{width:min(850px,92vw);height:min(75vh,700px);background:var(--paper);color:#222;padding:48px;overflow:auto;box-shadow:0 30px 90px rgba(0,0,0,.55);margin-top:20px}.archive-paper h3{font:20px Georgia,serif;margin-bottom:20px}.archive-close{position:absolute;right:20px;top:20px;background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.18);padding:9px 15px;border-radius:999px}
+/* MOBILE */
+@media(max-width:700px){html,body{overflow:hidden}.desk{left:8px;right:8px;top:8px;bottom:8px;border-radius:20px}.scene-label{left:18px;top:17px}.globe-wrap{left:3%;top:13%;width:150px;height:150px}.globe{inset:10px}.place-tag{font-size:8px}.tag-recife{left:64%;top:42%}.tag-cacoal{left:58%;top:64%}.calendar{right:4%;top:9%;width:118px;height:80px}.calendar-day{font-size:28px;margin-top:5px}.calendar-month{font-size:7px}.calendar-head{height:20px;font-size:7px}.calendar-rings{left:12px;right:12px}.ring{width:8px;height:15px;border-width:2px}.book{width:170px;height:230px;top:51%}.book-cover{font-size:14px}.book-sub{font-size:7px}.cadillac{right:3%;bottom:17%;width:145px;height:68px;transform:scale(.9) rotate(-4deg);transform-origin:right bottom}.pen{right:10%;bottom:12%;width:135px;transform:rotate(-34deg) scale(.82);transform-origin:right center}.letter-shell{width:96vw;height:80vh}.letter-message{font-size:10px;right:10px;bottom:10px}.letter-controls{bottom:8px}.paper{width:96vw;height:88vh;padding:42px 20px}.paper-title{font-size:14px}.message-form{grid-template-columns:1fr;gap:6px;width:calc(100% - 28px);bottom:12px}.message-form button{height:42px}.messages{height:calc(100% - 150px);padding-bottom:170px}.message{max-width:96%;font-size:14px}.message-text{font-size:14px}.archive-list{padding:20px}.archive-paper{height:65vh;padding:28px 22px}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="loading" id="loading">para você.</div>
+
+  <main class="desk">
+    <div class="scene-label">para você · 10.08.2025</div>
+
+    <div class="globe-wrap" aria-label="Globo com Recife e Cacoal">
+      <div class="globe">
+        <div class="continent na"></div><div class="continent sa"></div><div class="continent eur"></div><div class="continent af"></div><div class="continent as"></div><div class="continent au"></div>
+        <div class="brazil-mark"></div>
+        <div class="pin recife" title="Recife - PE"></div>
+        <div class="pin cacoal" title="Cacoal - RO"></div>
+        <div class="place-tag tag-recife">Recife · PE</div>
+        <div class="place-tag tag-cacoal">Cacoal · RO</div>
+      </div>
+      <div class="globe-caption">dois lugares · uma história</div>
+    </div>
+
+    <div class="calendar" aria-label="Calendário de 10 de agosto de 2025">
+      <div class="calendar-base"></div>
+      <div class="calendar-rings"><span class="ring"></span><span class="ring"></span></div>
+      <div class="calendar-page"><div class="calendar-head">agosto · 2025</div><div class="calendar-day">10</div><div class="calendar-month">domingo</div></div>
+    </div>
+
+    <div class="book" id="book" title="Abrir carta" role="button" tabindex="0">
+      <div class="book-cover"><div class="book-title">uma carta.<span class="book-sub">para você</span></div></div>
+    </div>
+
+    <div class="cadillac" title="Cadillac Escalade 2026">
+      <div class="cad-roof"></div><div class="cad-window"></div><div class="cad-body"></div><div class="cad-grille"></div><div class="cad-badge"></div><div class="wheel one"></div><div class="wheel two"></div><div class="toy-label">Cadillac Escalade · 2026</div>
+    </div>
+
+    <div class="pen" id="pen" title="Escrever" role="button" tabindex="0"><div class="pen-tip"></div><div class="pen-body"></div><div class="pen-cap"></div><div class="pen-note">toque para escrever</div></div>
+  </main>
+
+  <div class="overlay hidden" id="passwordOverlay">
+    <div class="modal">
+      <h2>Teu aniversário</h2>
+      <p>Para abrir o livro, digite a data somente com números.</p>
+      <input id="passwordInput" type="password" inputmode="numeric" placeholder="DDMMAAAA" maxlength="8" autocomplete="off">
+      <div><button class="primary" id="unlockButton">abrir</button><button class="secondary" id="cancelPassword">cancelar</button></div>
+      <p class="error" id="passwordError"></p>
+    </div>
+  </div>
+
+  <div class="letter-overlay hidden" id="letterOverlay">
+    <div class="letter-shell">
+      <button class="close" id="closeLetter" aria-label="Fechar">×</button>
+      <div class="letter">
+        <img class="letter-page active" src="assets/carta-1.png" alt="Página 1 da carta">
+        <img class="letter-page" src="assets/carta-2.png" alt="Página 2 da carta">
+        <img class="letter-page" src="assets/carta-3.png" alt="Página 3 da carta">
+        <img class="letter-page" src="assets/carta-4.png" alt="Página 4 da carta">
+        <div class="letter-controls"><button id="previousPage" aria-label="Página anterior">←</button><span class="page-number" id="pageNumber">1 / 4</span><button id="nextPage" aria-label="Próxima página">→</button></div>
+        <div class="letter-message hidden" id="letterMessage">toque na caneta e escreva</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="messages-overlay hidden" id="messagesOverlay">
+    <div class="paper">
+      <button class="archive-button" id="archiveButton">folhas anteriores</button>
+      <button class="close-messages" id="closeMessages" aria-label="Fechar">×</button>
+      <div class="paper-title">if u have something to say,<br>say it here.</div>
+      <div class="messages" id="messages"></div>
+      <form class="message-form" id="messageForm">
+        <input id="nameInput" type="text" maxlength="80" placeholder="teu nome" autocomplete="name" required>
+        <textarea id="messageInput" maxlength="2000" placeholder="escreva aqui..." required></textarea>
+        <button id="sendButton" type="submit">enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="archive hidden" id="archive">
+    <button class="archive-close" id="closeArchive">fechar</button>
+    <h2>folhas anteriores</h2>
+    <div class="archive-list" id="archiveList"></div>
+    <div class="archive-paper hidden" id="archivePaper"></div>
+  </div>
+</div>
+
+<script>
+const PASSWORD="25102008";
+const API_URL="https://script.google.com/macros/s/AKfycbw5774INB_8r6BCer09NvVyZAjcsGumVyM6om3OyHj98WkWEP67051ScrVyEPQ9EHMp/exec";
+const MESSAGES_PER_SHEET=6;
+let unlocked=false,currentPage=0,allMessages=[],currentMessageSheet=0;
+
+const $=id=>document.getElementById(id);
+const loading=$("loading"),book=$("book"),pen=$("pen"),passwordOverlay=$("passwordOverlay"),passwordInput=$("passwordInput"),passwordError=$("passwordError"),letterOverlay=$("letterOverlay"),pages=document.querySelectorAll(".letter-page"),previousPage=$("previousPage"),nextPage=$("nextPage"),pageNumber=$("pageNumber"),letterMessage=$("letterMessage"),messagesOverlay=$("messagesOverlay"),closeMessages=$("closeMessages"),messagesContainer=$("messages"),nameInput=$("nameInput"),messageInput=$("messageInput"),sendButton=$("sendButton"),messageForm=$("messageForm"),archiveButton=$("archiveButton"),archive=$("archive"),archiveList=$("archiveList"),archivePaper=$("archivePaper"),closeArchive=$("closeArchive"),closeLetter=$("closeLetter"),unlockButton=$("unlockButton"),cancelPassword=$("cancelPassword");
+
+window.addEventListener("load",()=>setTimeout(()=>loading.classList.add("hidden"),650));
+function requestUnlock(){passwordOverlay.classList.remove("hidden");passwordError.textContent="";setTimeout(()=>passwordInput.focus(),50)}
+function openBook(){if(!unlocked){requestUnlock();return}currentPage=0;updatePage();letterOverlay.classList.remove("hidden")}
+book.addEventListener("click",openBook);book.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openBook()}});
+pen.addEventListener("click",()=>{if(!unlocked){requestUnlock();return}openMessages()});pen.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();if(!unlocked)requestUnlock();else openMessages()}});
+function verifyPassword(){if(passwordInput.value.trim()===PASSWORD){unlocked=true;passwordOverlay.classList.add("hidden");passwordInput.value="";passwordError.textContent="";openBook()}else{passwordError.textContent="A senha não está correta.";passwordInput.select()}}
+unlockButton.addEventListener("click",verifyPassword);passwordInput.addEventListener("keydown",e=>{if(e.key==="Enter")verifyPassword()});cancelPassword.addEventListener("click",()=>{passwordOverlay.classList.add("hidden");passwordInput.value="";passwordError.textContent=""});
+function updatePage(){pages.forEach((p,i)=>p.classList.toggle("active",i===currentPage));pageNumber.textContent=`${currentPage+1} / ${pages.length}`;previousPage.disabled=currentPage===0;nextPage.disabled=currentPage===pages.length-1;letterMessage.classList.toggle("hidden",currentPage!==pages.length-1)}
+previousPage.addEventListener("click",()=>{if(currentPage>0){currentPage--;updatePage()}});nextPage.addEventListener("click",()=>{if(currentPage<pages.length-1){currentPage++;updatePage()}});closeLetter.addEventListener("click",()=>letterOverlay.classList.add("hidden"));
+async function openMessages(){messagesOverlay.classList.remove("hidden");await loadMessages()}
+closeMessages.addEventListener("click",()=>messagesOverlay.classList.add("hidden"));
+function sheets(){const result=[];for(let i=0;i<allMessages.length;i+=MESSAGES_PER_SHEET)result.push(allMessages.slice(i,i+MESSAGES_PER_SHEET));if(!result.length)result.push([]);return result}
+async function loadMessages(){try{const r=await fetch(`${API_URL}?action=messages&time=${Date.now()}`,{cache:"no-store"});const data=await r.json();allMessages=data.success&&Array.isArray(data.messages)?data.messages:[]}catch(e){console.error(e);allMessages=[]}renderLatestSheet()}
+function formatDate(v){const d=new Date(v);return isNaN(d)?"":d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"})}
+function renderLatestSheet(){const s=sheets();currentMessageSheet=s.length-1;renderSheet(currentMessageSheet);renderArchive(s)}
+function renderSheet(index){const s=sheets()[index]||[];messagesContainer.innerHTML="";if(!s.length){const e=document.createElement("div");e.style.cssText="text-align:center;margin-top:90px;opacity:.45;font:16px Georgia,serif";e.textContent="ainda não há mensagens.";messagesContainer.appendChild(e);return}s.forEach((item,i)=>{const w=document.createElement("div");w.className="message";w.style.setProperty("--rotation",`${(i%3-1)*.35}deg`);const n=document.createElement("div");n.className="message-name";n.textContent=item.name||"";const t=document.createElement("div");t.className="message-text";t.textContent=item.message||"";const d=document.createElement("div");d.className="message-date";d.textContent=formatDate(item.timestamp);w.append(n,t,d);messagesContainer.appendChild(w)})}
+function renderArchive(s){archiveList.innerHTML="";if(s.length<=1){const p=document.createElement("p");p.style.color="rgba(255,255,255,.55)";p.textContent="Ainda não existem folhas anteriores.";archiveList.appendChild(p);return}for(let i=s.length-2;i>=0;i--){const b=document.createElement("button");b.textContent=`folha ${i+1}`;b.addEventListener("click",()=>{archive.classList.add("hidden");currentMessageSheet=i;renderSheet(i)});archiveList.appendChild(b)}}
+archiveButton.addEventListener("click",()=>{renderArchive(sheets());archive.classList.remove("hidden")});closeArchive.addEventListener("click",()=>archive.classList.add("hidden"));
+messageForm.addEventListener("submit",async e=>{e.preventDefault();const name=nameInput.value.trim(),message=messageInput.value.trim();if(!name){nameInput.focus();return}if(!message){messageInput.focus();return}sendButton.disabled=true;sendButton.textContent="enviando…";try{const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({name,message})});const data=await r.json();if(!data.success)throw new Error(data.error||"Erro ao salvar");nameInput.value="";messageInput.value="";await loadMessages();alert("Mensagem guardada.")}catch(e){console.error(e);alert("Não foi possível salvar a mensagem. Verifique a implantação do Google Apps Script.")}finally{sendButton.disabled=false;sendButton.textContent="enviar"}});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;passwordOverlay.classList.add("hidden");letterOverlay.classList.add("hidden");messagesOverlay.classList.add("hidden");archive.classList.add("hidden")});
+</script>
+</body>
+</html>
